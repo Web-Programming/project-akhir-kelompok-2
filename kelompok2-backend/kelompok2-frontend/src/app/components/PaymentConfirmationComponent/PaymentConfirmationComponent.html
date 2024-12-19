@@ -1,0 +1,6 @@
+<form (ngSubmit)="confirmPayment()">
+    <label for="paymentProof">Unggah Bukti Pembayaran:</label>
+    <input type="file" id="paymentProof" (change)="uploadFile($event)" required />
+    <button type="submit">Konfirmasi Pembayaran</button>
+  </form>
+  

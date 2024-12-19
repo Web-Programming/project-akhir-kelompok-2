@@ -1,0 +1,12 @@
+<div class="cart-items" *ngFor="let item of cart">
+    <h4>{{ item.name }}</h4>
+    <p>{{ item.price | currency }}</p>
+  </div>
+  
+  <form (ngSubmit)="placeOrder()">
+    <label for="address">Alamat Pengiriman:</label>
+    <textarea id="address" [(ngModel)]="order.address" name="address" required></textarea>
+  
+    <button type="submit">Lakukan Pemesanan</button>
+  </form>
+  

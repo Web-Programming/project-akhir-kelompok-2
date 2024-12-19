@@ -1,0 +1,12 @@
+<select (change)="filterByCategory($event.target.value)">
+    <option value="">Semua Kategori</option>
+    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+  </select>
+  
+  <div class="product-list">
+    <div *ngFor="let product of filteredProducts" class="product-card">
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.price | currency }}</p>
+    </div>
+  </div>
+  
