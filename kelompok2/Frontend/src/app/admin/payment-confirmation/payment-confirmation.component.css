@@ -1,0 +1,30 @@
+
+.payment-container {
+    padding: 20px;
+  }
+  
+  .payment-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .payment-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f4f4f9;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #007bff;
+  }
+  
