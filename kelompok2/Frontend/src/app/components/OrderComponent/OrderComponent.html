@@ -1,0 +1,113 @@
+<div class="cart-container">
+  <h2>Keranjang Belanja</h2>
+  <div *ngIf="cart.length > 0; else emptyCart">
+    <div *ngFor="let item of cart" class="cart-item">
+      <img 
+        [src]="item.imageUrl.startsWith('http') ? item.imageUrl : 'http://localhost:5000' + item.imageUrl" 
+        [alt]="item.name" 
+        class="cart-item-image"
+      >
+      <div class="cart-item-details">
+        <h4>{{ item.name }}</h4>
+        <p>Rp{{ item.price.toLocaleString('id-ID') }} x {{ item.quantity }}</p>
+        <p>Subtotal: Rp{{ (item.price * item.quantity).toLocaleString('id-ID') }}</p>
+        <div class="quantity-controls">
+          <button 
+            (click)="updateQuantity(item, -1)" 
+            class="quantity-button"
+            [disabled]="item.quantity <= 1"
+          >-</button>
+          <span>{{ item.quantity }}</span>
+          <button 
+            (click)="updateQuantity(item, 1)" 
+            class="quantity-button"
+            [disabled]="item.quantity >= item.stock"
+          >+</button>
+        </div>
+        <button (click)="removeFromCart(item)" class="remove-button">Hapus</button>
+      </div>
+    </div>
+
+    <div class="cart-total">
+      <strong>Total: Rp{{ getTotalPrice().toLocaleString('id-ID') }}</strong>
+    </div>
+
+    <!-- Order Form -->
+    <div class="order-form">
+      <h3>Formulir Pemesanan</h3>
+      <form #orderForm="ngForm" (ngSubmit)="placeOrder()">
+        <div class="form-group">
+          <label for="address">Alamat Pengiriman:</label>
+          <textarea 
+            id="address" 
+            name="address"
+            [(ngModel)]="order.address" 
+            required 
+            rows="3"
+            placeholder="Masukkan alamat pengiriman lengkap"
+          ></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Nomor Telepon:</label>
+          <input 
+            type="tel" 
+            id="phone" 
+            name="phone"
+            [(ngModel)]="order.phone" 
+            required 
+            placeholder="Masukkan nomor telepon"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="paymentMethod">Metode Pembayaran:</label>
+          <select 
+            id="paymentMethod" 
+            name="paymentMethod"
+            [(ngModel)]="order.paymentMethod" 
+            required
+          >
+            <option value="">Pilih metode pembayaran</option>
+            <option value="transfer">Transfer Bank</option>
+            <option value="OVO">OVO</option>
+            <option value="GoPay">GoPay</option>
+          </select>
+        </div>
+
+        <div class="form-group" *ngIf="order.paymentMethod === 'OVO' || order.paymentMethod === 'GoPay'">
+          <label for="ewalletNumber">Nomor {{ order.paymentMethod }}:</label>
+          <input 
+            type="text" 
+            id="ewalletNumber" 
+            name="ewalletNumber"
+            [(ngModel)]="order.ewalletNumber" 
+            required 
+            placeholder="Masukkan nomor {{ order.paymentMethod }}"
+          >
+        </div>
+
+        <button 
+          type="submit" 
+          [disabled]="!orderForm.form.valid" 
+          class="order-button"
+        >
+          Lakukan Pemesanan
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <ng-template #emptyCart>
+    <div class="empty-cart">
+      <p class="empty-cart-message">Keranjang belanja Anda kosong</p>
+      
+    </div>
+  </ng-template>
+
+  <div *ngIf="orderPlaced" class="order-success">
+    <p>Pesanan Anda berhasil! Terima kasih telah berbelanja!</p>
+    <p>Kami akan segera memproses pesanan Anda.</p>
+    <button class="order-again-btn" (click)="orderAgain()">Pesan Lagi</button>
+  </div>
+</div>

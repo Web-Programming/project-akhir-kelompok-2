@@ -1,0 +1,149 @@
+/* Styling untuk keranjang belanja */
+.cart-container {
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.cart-item {
+  display: flex;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  gap: 15px;
+}
+
+.cart-item-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.cart-item-details {
+  flex: 1;
+}
+
+.cart-item-details h4 {
+  margin: 0 0 10px 0;
+}
+
+.quantity-controls {
+  
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+/* .quantity-controls button {
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+} */
+
+.cart-total {
+  margin: 20px 0;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.order-form {
+  margin-top: 30px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group textarea,
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  background: #cd0404;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.remove-button:hover:not(:disabled) {
+  background: #a80808;
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.empty-cart-message {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+.order-success {
+  text-align: center;
+  padding: 20px;
+  background: #d4edda;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+.order-again-btn {
+  margin-top: 10px;
+}
+
+.quantity-button {
+  background-color: #007bff;
+  color: rgb(255, 255, 255);
+  border: none;
+  /* padding: 5px 10px; */
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.quantity-button:hover {
+  background-color: #0162c9;
+}
+
+.remove-button {
+  background-color: #cd0404;
+  color: white;
+  border: none;
+  /* margin-left: 15px; */
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.order-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.quantity-button:hover:disabled {
+  background-color: #ccc;
+}
+
+
+
+
+
