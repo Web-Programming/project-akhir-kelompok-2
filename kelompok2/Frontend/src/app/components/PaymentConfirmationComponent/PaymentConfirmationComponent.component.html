@@ -1,0 +1,42 @@
+<div class="payment-confirmation">
+  <h2>Konfirmasi Pembayaran</h2>
+  
+  <div *ngIf="orderDetails" class="order-details">
+    <h3>Detail Pesanan:</h3>
+    <p><strong>Total Pembayaran:</strong> Rp{{ orderDetails.total.toLocaleString('id-ID') }}</p>
+    <p><strong>Alamat Pengiriman:</strong> {{ orderDetails.address }}</p>
+    <p><strong>Nomor Telepon:</strong> {{ orderDetails.phone }}</p>
+    
+    <div class="payment-info">
+      <h3>Informasi Pembayaran:</h3>
+      <p>Silakan transfer ke rekening berikut:</p>
+      <p><strong>Bank BCA</strong></p>
+      <p><strong>No. Rekening:</strong> 1234567890</p>
+      <p><strong>Atas Nama:</strong> PT Abc</p>
+    </div>
+
+    <div class="upload-section">
+      <h3>Upload Bukti Pembayaran:</h3>
+      <input 
+        type="file" 
+        (change)="uploadFile($event)" 
+        accept="image/*"
+        class="file-input"
+      >
+      <p *ngIf="selectedFile">File terpilih: {{ selectedFile.name }}</p>
+      
+      <button 
+        (click)="confirmPayment()" 
+        [disabled]="!selectedFile"
+        class="confirm-button"
+      >
+        Konfirmasi Pembayaran
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!orderDetails" class="no-order">
+    <p>Tidak ada pesanan yang perlu dikonfirmasi.</p>
+    <button routerLink="/" class="back-button">Kembali ke Beranda</button>
+  </div>
+</div>
