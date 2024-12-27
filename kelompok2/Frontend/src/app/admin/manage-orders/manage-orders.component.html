@@ -1,0 +1,58 @@
+<div class="order-container">
+  <h2>Daftar Pesanan</h2>
+  <div class="order-list">
+    <div *ngFor="let order of orders" class="order-card">
+      <div class="order-header">
+        <span class="order-id">Order ID: {{ order._id }}</span>
+        <span class="order-date">{{ order.date | date:'dd MMM yyyy, HH:mm' }}</span>
+      </div>
+
+      <div class="order-details">
+        <p><strong>Alamat:</strong> {{ order.address }}</p>
+        <p><strong>No. Telepon:</strong> {{ order.phone }}</p>
+        <p><strong>Status:</strong> {{ getStatusText(order.status) }}</p>
+        <p><strong>Metode Pembayaran:</strong> {{ order.paymentMethod }}</p>
+
+        <div class="order-items">
+          <h4>Items:</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Harga</th>
+                <th>Jumlah</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of order.items">
+                <td>{{ item.name }}</td>
+                <td>Rp{{ item.price.toLocaleString('id-ID') }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>Rp{{ (item.price * item.quantity).toLocaleString('id-ID') }}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3"><strong>Total:</strong></td>
+                <td><strong>Rp{{ order.total.toLocaleString('id-ID') }}</strong></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="order-status">
+          <!-- Only show button if status is 'paid' -->
+          <button 
+            *ngIf="order.status === 'paid'"
+            class="complete-btn" 
+            (click)="updateOrderStatus(order._id)"
+          >
+            Selesai
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
