@@ -1,0 +1,11 @@
+<!-- src/app/manage-products/manage-products.component.html -->
+<div class="product-container">
+    <h2>Manage Products</h2>
+    <ul class="product-list">
+      <li *ngFor="let product of products">
+        <span>{{ product.name }}</span>
+        <button (click)="deleteProduct(product._id)">Delete</button>
+      </li>
+    </ul>
+  </div>
+  

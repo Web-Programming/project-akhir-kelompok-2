@@ -1,0 +1,52 @@
+<!-- src/app/admin-dashboard/admin-dashboard.component.html -->
+<div class="dashboard-container">
+    <h2>Admin Dashboard</h2>
+    <div class="stats">
+      <div class="stat-item">
+        <h3>Total Products</h3>
+        <p>{{ totalProducts }}</p>
+      </div>
+      <div class="stat-item">
+        <h3>Total Orders</h3>
+        <p>{{ totalOrders }}</p>
+        <small>({{ completedOrders }} completed)</small>
+      </div>
+      <div class="stat-item">
+        <h3>Total Customers</h3>
+        <p>{{ totalCustomers }}</p>
+      </div>
+      <div class="stat-item revenue">
+        <h3>Total Pendapatan</h3>
+        <p>Rp{{ totalRevenue | number }}</p>
+        <small>From completed orders</small>
+      </div>
+    </div>
+
+    <div class="revenue-report">
+      <div class="report-header">
+        <h3>Revenue Report</h3>
+        <button class="print-btn" (click)="printReport()">Cetak</button>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>Order ID</th>
+              <th>Items</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of revenueData">
+              <td>{{ row.date }}</td>
+              <td>{{ row.orderId }}</td>
+              <td>{{ row.items }}</td>
+              <td>Rp{{ row.total | number }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
